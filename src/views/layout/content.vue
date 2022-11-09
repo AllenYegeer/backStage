@@ -20,9 +20,8 @@
  import headPortraits from '../headPortraits/index.vue'
     const props = defineProps(['isCollapse'])
     //给父组件传递事件
-    const emit = defineEmits(['on-save-ok'])
+    const emit = defineEmits(['changeCollapse'])
     const changeMenu = () =>{
-        console.log(props.isCollapse);
         emit('changeCollapse')
     }
 </script>

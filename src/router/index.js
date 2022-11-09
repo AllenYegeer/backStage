@@ -56,9 +56,22 @@ const router = createRouter({
       ]
     },
     {
-      path:"/update",
-      name:"update",
-      component:() => import('../views/update/index.vue')
+      path:'/portraits',
+      name:'portraits',
+      component:() => import('../components/Portraits/index.vue')
+    }
+    ,
+    {
+      path:'/test',
+      name:'test',
+      component:() => import('../components/tmp/index.vue')
+    }
+    ,
+    {
+      path:'/viewInfo',
+      name:'viewInfo',
+      component:() => import('../views/headPortraits/profile/viewInfo/index.vue')
+
     }
   ]
 })

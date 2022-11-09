@@ -4,6 +4,7 @@
       <el-form
         status-icon
         label-width="120px"
+        :model="login_info"
         class="demo-ruleForm">
           <el-form-item>
             <div class="left">
@@ -29,8 +30,8 @@
   
         <el-form-item>
           <el-button class="loginBtn" :plain="true" @click.stop="clickLogin" type="primary" round>登 陆</el-button>
+          <el-button class="loginBtn" :plain="true" @click.stop="reset" type="primary" round>重 置</el-button>
         </el-form-item>
-  
       </el-form>
     </div>
   </div>
@@ -46,15 +47,18 @@ const login_info = ref({
   admin_name: "",
   password: "",
 });
-let code = ref(-1)
 
-const clickLogin= () => {
-  console.log(111)
+const reset = () => {   //重置
+  login_info.value.admin_name = ""
+  login_info.value.password = ""
+}
+
+const clickLogin= () => {  //点击登录
   login(login_info.value).then((res) => {
-    console.log(res);
-    code = res.data.code
+    const code = res.data.code
     if(code == 0){
       loginSuccess()
+      sessionStorage.setItem('token',res.data.data.token)  //设置token
     }else {
       loginFali();
     }
@@ -104,7 +108,7 @@ const register = () => {  //注册界面跳转
 }
 .loginBtn {
   width: 70px;
-  margin-left: 180px;
+  margin-left: 30px;
   border-radius: 2px;
   font-size:18px;
 }

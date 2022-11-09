@@ -3,8 +3,8 @@
     <el-form
       status-icon
       label-width="120px"
-      class="demo-ruleForm">
-
+      class="demo-ruleForm"
+      :model="user_info">
       <el-form-item label="邮箱">
         <el-input
           type="text"
@@ -66,14 +66,12 @@ const sure_password = ref();   //确认密码
 
 const clickGetCode = () => { //获取验证码
     getCode({email : user_info.value.user_email}).then(res =>{
-        console.log(res)
+
     })
 }
 
 const upLoadInfo = () => {
-    console.log(user_info.value);
     register_info(user_info.value).then(res => {
-        console.log(res)
     })
 }
 </script>

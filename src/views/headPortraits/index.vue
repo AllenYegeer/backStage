@@ -16,12 +16,7 @@
     img {
         height: 100%;
         border-radius: 50%;
-    }
-
-    .el-poper{
-        left:0;
-        right: 0;
-        border: 1px solid red;
+        cursor:pointer;
     }
 </style>
 <script setup>

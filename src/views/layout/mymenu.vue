@@ -35,8 +35,10 @@
 </template>
 <script setup>
 import { defineProps, watch, ref, computed } from "vue";
+
 const props = defineProps(['isCollapse'])
 const isCollapse = computed(() => props.isCollapse)  //添加计算属性才是响应式
+
 </script>
 <style scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {  
