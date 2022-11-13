@@ -1,5 +1,5 @@
 <template>
     <div>
-        管理员管理
+    <button><slot/></button>
     </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-   <div style="margin-left:16px; margin-top:16px">
+   <div style="margin-left:5px; margin-top:16px">
         <el-button type="primary"  @click="is_display = true">
           修改信息
         </el-button>
@@ -31,22 +31,24 @@
             </el-form-item>
 
             <el-form-item label="*oldPassword:" prop="password">
-            <el-input type="password" v-model="form.password" autocomplete="off" />
+            <el-input type="password" v-model="form.password" autocomplete="off" show-password/>
             </el-form-item>
             
             <el-form-item label="*newPassword:" prop="new_password">
-            <el-input type="password" v-model="form.new_password" autocomplete="off" />
+            <el-input type="password" v-model="form.new_password" autocomplete="off" show-password/>
             </el-form-item>
   
             <el-form-item label="*Repeat Password:" prop="repeat_password">
-            <el-input type="password" v-model="form.repeat_password" autocomplete="off" />
+            <el-input type="password" v-model="form.repeat_password" autocomplete="off" show-password/>
             </el-form-item>
             </el-form>
             <div class="footer">
-              <el-button  type="primary" @click="cancelForm">退 出</el-button>
-              <el-button type="primary" :loading="loading" @click="submit">
-                {{loading ? 'Submitting ...' : '提 交'}}
-              </el-button>
+              <el-form-item>
+                <el-button  type="primary" @click="cancelForm">退 出</el-button>
+                <el-button type="primary" :loading="loading" @click="submit">
+                  {{loading ? 'Submitting ...' : '提 交'}}
+                </el-button>
+              </el-form-item>
             </div>
           </div>
         </el-drawer>
@@ -57,9 +59,10 @@
   import { reactive, ref } from 'vue'
   import { ElDrawer, ElMessageBox } from 'element-plus'
   import type { FormInstance } from 'element-plus'
+  import {login, setSelfInfo,updatePassword} from '../../../../request/admin'
   import portraits from '../../../../components/Portraits/index.vue'
-  import {setSelfInfo,updatePassword} from '../../../../request/admin'
-
+  import axios from 'axios'
+  import { ElMessage } from 'element-plus'
   const ruleFormRef = ref<FormInstance>()
   const is_display = ref(false)   
   const loading = ref(false)
@@ -102,7 +105,7 @@
     } else {
       if (form.new_password !== '') {
         if (!ruleFormRef.value) return
-        ruleFormRef.value.validateField('checkPass', () => null)
+        ruleFormRef.value.validateField('new_password', () => null)
       }
       callback()
     }
@@ -112,7 +115,7 @@
     if (value === '') {
       callback(new Error('Please input the password again'))
     } else if (value !== form.new_password) {
-      callback(new Error("Two inputs don't match!"))
+      callback(new Error("Two passwords don't match!"))
     } else {
       callback()
     }
@@ -133,31 +136,34 @@
       }
       ElMessageBox.confirm('Do you want to submit?')
         .then(() => {
-          updatePassword(
+           
+          axios.all([updatePassword(   //发送多个请求
             {
               new_password:form.new_password,
               password:form.password
             }
-          ).then((res) => {
-
-          })
-          setSelfInfo(
+          ),
+           setSelfInfo(
             {
               email:form.email,
               nick_name:form.nick_name
             }
-          ).then((res) => {
-            
+          )
+          ]).then(axios.spread((res1,res2) => {
+            console.log(res1)
+            console.log(res2)
+            ElMessage({
+              message: '修改成功.',
+              type: 'success',
           })
-
+          })).catch((err) => {
+              ElMessage.error('修改失败.')
+          })
           loading.value = true
             // 动画关闭需要一定的时间
               timer = setTimeout(() =>{
               loading.value = false
-              form.new_password = ''
-              form.password = ''
-              form.email = ''
-              form.nick_name = ''
+              reset()
               cancelForm()
           },2000)
         })
@@ -170,6 +176,19 @@
       loading.value = false
       is_display.value = false
       clearTimeout(timer)
+  }
+
+  const resetForm = (formEl: FormInstance | undefined) => {
+      if (!formEl) return
+      formEl.resetFields()
+  }
+
+  const reset = () => {
+    form.new_password = ""
+    form.password = ""
+    form.email = ""
+    form.nick_name = ""
+    form.repeat_password = ""
   }
   </script>
 

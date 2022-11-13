@@ -1,10 +1,10 @@
 <template>
   <div>
-        <el-button type="primary" style="margin-left: 16px" @click="drawer = true">
+        <el-button type="primary" style="margin-left: 5px" @click="drawer = true">
             个人信息
         </el-button>
         <update></update>
-        <el-button type="primary" @click="loginOut" style="margin-left:16px; margin-top:16px">
+        <el-button type="primary" @click="loginOut" style="margin-left: 5px; margin-top:16px">
             退出登录
         </el-button>
         <el-drawer v-model="drawer" title="个人信息:" append-to-body="true">

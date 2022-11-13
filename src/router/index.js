@@ -49,17 +49,31 @@ const router = createRouter({
           component:() => import('../views/announcementsPage/index.vue')
         },
         { 
-          path:'/backpage/admin',   //用户管理
+          path:'/backpage/admin',   //管理员管理
           name:'admin',
-          component:() => import('../views/adminPage/index.vue')
+          redirect:'/backpage/admin/viewAdminInfo',
+          children:[
+            {
+              path: '/backpage/admin/viewAdminInfo',
+              name: 'userInfo',
+              component: () => import('../views/adminPage/viewInfo/index.vue')
+            },
+            {
+              path: '/backpage/admin/addAdminInfo',
+              name: 'addInfo',
+              component: () => import('../views/adminPage/addAdmin/index.vue')
+            }
+          ],
         },
       ]
-    },
+    }
+    ,
     {
-      path:'/portraits',
+      path:'/portraits',    //头像信息
       name:'portraits',
       component:() => import('../components/Portraits/index.vue')
     }
+    /////
     ,
     {
       path:'/test',
@@ -67,6 +81,13 @@ const router = createRouter({
       component:() => import('../components/tmp/index.vue')
     }
     ,
+    {
+      path: '/test1',
+      name: 'test1',
+      component: () => import('../components/tmp/index1.vue')
+    }
+    ,
+    /////
     {
       path:'/viewInfo',
       name:'viewInfo',

@@ -58,7 +58,7 @@ const clickLogin= () => {  //点击登录
     const code = res.data.code
     if(code == 0){
       loginSuccess()
-      sessionStorage.setItem('token',res.data.data.token)  //设置token
+      sessionStorage.setItem('adminToken',res.data.data.token)  //设置token
     }else {
       loginFali();
     }

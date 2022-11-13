@@ -11,7 +11,6 @@ import {computed, defineProps} from 'vue'
     const emit = defineEmits(['changePage'])
     const totalSize = ref(computed(() => props.total))   //总的条数
     const pageSize = ref(computed(() => props.pageSize)) //每页显示的条数
-
     const changePage_ = (page) =>{
         emit('changePage',page)
     }
