@@ -59,7 +59,7 @@
   import { reactive, ref } from 'vue'
   import { ElDrawer, ElMessageBox } from 'element-plus'
   import type { FormInstance } from 'element-plus'
-  import {login, setSelfInfo,updatePassword} from '../../../../request/admin'
+  import {login, setSelfInfo,updateSelfPassword} from '../../../../request/admin'
   import portraits from '../../../../components/Portraits/index.vue'
   import axios from 'axios'
   import { ElMessage } from 'element-plus'
@@ -137,7 +137,7 @@
       ElMessageBox.confirm('Do you want to submit?')
         .then(() => {
            
-          axios.all([updatePassword(   //发送多个请求
+          axios.all([updateSelfPassword(   //发送多个请求
             {
               new_password:form.new_password,
               password:form.password
@@ -184,11 +184,10 @@
   }
 
   const reset = () => {
-    form.new_password = ""
-    form.password = ""
-    form.email = ""
-    form.nick_name = ""
-    form.repeat_password = ""
+  
+    Object.keys(form).forEach(key => {
+      form[key] = ''
+    })
   }
   </script>
 

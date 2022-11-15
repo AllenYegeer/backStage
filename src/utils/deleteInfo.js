@@ -1,5 +1,5 @@
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { deleteAdminAccount } from '../request/admin'
+import { deleteAdminAccount } from '@/request/admin'
 import Qs from 'qs'
 const remove = (adminInfo,index) => {
     let flag;
@@ -18,7 +18,6 @@ const remove = (adminInfo,index) => {
         deleteAdminAccount(
             {delete_id:adminInfo[index].id}
         ).then((res) => {
-            console.log(res)
         })
         adminInfo.splice(index, 1)
     }).catch(() => {

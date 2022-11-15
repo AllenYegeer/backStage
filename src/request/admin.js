@@ -20,8 +20,13 @@ function get_selfInfo(data){  //获取自身信息
     return get('/admin/getInformation', data)
 }
 
-function updatePassword(data){    //修改密码
+function updateSelfPassword(data){    //修改密码
     return put('/admin/changeSelfPassword', data)
+}
+
+function updateAdminInfo(data,idx){    //修改管理员信息,包括密码和信息
+    if (idx == 1) return put('/admin/setAdminInfo', data)
+    else return put('/admin/changePassword',data)
 }
 
 function setSelfInfo(data){   //修改信息
@@ -43,11 +48,12 @@ export {
     login,
     get_userInfo,
     get_selfInfo,
-    updatePassword,
+    updateSelfPassword,
     setSelfInfo,
     get_adminInfo,
     getAdminAccount,
     setAdminAutorities,
     deleteAdminAccount,
-    getInfo
+    getInfo,
+    updateAdminInfo
 }

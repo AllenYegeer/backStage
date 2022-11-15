@@ -31,7 +31,7 @@
 <script setup>
 import { ref } from "@vue/reactivity";
 import {computed, defineProps,defineEmits} from 'vue'
-import { setAdminAutorities } from "../../request/admin";
+import { setAdminAutorities } from "@/request/admin";
 import { ElMessage } from 'element-plus'
     const props = defineProps(['visible','index','adminInfo'])
     const emit = defineEmits(['changeVisible'])
@@ -45,7 +45,7 @@ import { ElMessage } from 'element-plus'
 
     let id = ref([])
     const changeVisible_ = () =>{
-        emit('changeVisible')
+        emit('changeVisible',2)
     }
 
     const submit = () => {
@@ -53,14 +53,12 @@ import { ElMessage } from 'element-plus'
           id.value.push(mp.get(item))   
         })
         Authorities.value.type = []
-        console.log(id.value)
         setAdminAutorities(
         {
           authority_id:id.value,
           uuid:props.adminInfo.uuid
         }
         ).then((res) => {
-          console.log(res);
           if (res.data.code === 0){
              ElMessage({
                 message: '设置成功',

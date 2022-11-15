@@ -17,8 +17,8 @@
     import {ref} from 'vue'
     import update from './update/index.vue'
     import viewInfo from './viewInfo/index.vue'
-    import router from "../../../router";
-    import portraits from '../../../components/Portraits/index.vue'
+    import router from "@/router";
+    import portraits from '@/components/Portraits/index.vue'
     import { replace } from 'lodash'
     const drawer = ref(false)
 

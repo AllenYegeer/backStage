@@ -39,8 +39,8 @@
 <script setup>
 
 import { ref } from "@vue/reactivity";
-import { login } from "../../request/admin";
-import router from "../../router";
+import { login } from "@/request/admin";
+import router from "@/router";
 import { ElMessage } from 'element-plus'
 
 const login_info = ref({
@@ -60,7 +60,7 @@ const clickLogin= () => {  //点击登录
       loginSuccess()
       sessionStorage.setItem('adminToken',res.data.data.token)  //设置token
     }else {
-      loginFali();
+      loginFali(res.data.msg);
     }
   });
 }
@@ -73,8 +73,8 @@ const loginSuccess = () => {
   router.push({path: '/backpage',replace:true})
 }
 
-const loginFali = () => {
-    ElMessage.error('登陆失败.')
+const loginFali = (msg) => {
+    ElMessage.error(msg)
 }
 const register = () => {  //注册界面跳转
     router.push({path: '/register',replace:true})

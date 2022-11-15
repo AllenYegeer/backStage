@@ -54,7 +54,7 @@
 </template>
 <script setup>
 import { reactive, ref } from "@vue/reactivity";
-import {getCode,register_info} from "../../request/user_register"
+import {getCode,register_info} from "@/request/user_register"
 const user_info = ref({
   user_email:"",
   user_email_code: "",

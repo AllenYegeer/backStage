@@ -15,38 +15,38 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/login/login.vue')
+      component: () => import('@/views/login/login.vue')
     },
     {
       path: '/register',
       name: 'register',
-      component: () => import('../views/register/register.vue')
+      component: () => import('@/views/register/register.vue')
     },
     {
       path: '/backpage',  //后台界面
       name: 'backPage',
-      component: () => import('../views/layout/index.vue'),
+      component: () => import('@/views/layout/index.vue'),
       redirect: '/backpage/user', //重定向
       children: [
         {
           path:'/backpage/user',  //用户管理
           name:'user',
-          component:() => import('../views/userPage/index.vue')
+          component: () => import('@/views/userPage/index.vue')
         },
         {
           path:'/backpage/competition',  //竞赛管理
           name:'competition',
-          component:() => import('../views/competitionPage/index.vue')
+          component: () => import('@/views/competitionPage/index.vue')
         },
         {
           path:'/backpage/question',   //问题管理
           name:'question',
-          component:() => import('../views/questionPage/index.vue')
+          component: () => import('@/views/questionPage/index.vue')
         },
         {
           path:'/backpage/announcements',  //公告管理
           name:'announcements',
-          component:() => import('../views/announcementsPage/index.vue')
+          component: () => import('@/views/announcementsPage/index.vue')
         },
         { 
           path:'/backpage/admin',   //管理员管理
@@ -56,12 +56,12 @@ const router = createRouter({
             {
               path: '/backpage/admin/viewAdminInfo',
               name: 'userInfo',
-              component: () => import('../views/adminPage/viewInfo/index.vue')
+              component: () => import('@/views/adminPage/viewInfo/index.vue')
             },
             {
               path: '/backpage/admin/addAdminInfo',
               name: 'addInfo',
-              component: () => import('../views/adminPage/addAdmin/index.vue')
+              component: () => import('@/views/adminPage/addAdmin/index.vue')
             }
           ],
         },
@@ -71,27 +71,27 @@ const router = createRouter({
     {
       path:'/portraits',    //头像信息
       name:'portraits',
-      component:() => import('../components/Portraits/index.vue')
+      component: () => import('@/components/Portraits/index.vue')
     }
     /////
     ,
     {
       path:'/test',
       name:'test',
-      component:() => import('../components/tmp/index.vue')
+      component: () => import('@/components/modifyAdmin/passIndex.vue')
     }
     ,
     {
       path: '/test1',
       name: 'test1',
-      component: () => import('../components/tmp/index1.vue')
+      component: () => import('@/components/tmp/index1.vue')
     }
     ,
     /////
     {
       path:'/viewInfo',
       name:'viewInfo',
-      component:() => import('../views/headPortraits/profile/viewInfo/index.vue')
+      component: () => import('@/views/headPortraits/profile/viewInfo/index.vue')
 
     }
   ]

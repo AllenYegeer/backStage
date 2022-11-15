@@ -1,4 +1,4 @@
-import { setAdminAutorities } from "../request/admin";
+import { setAdminAutorities } from "@/request/admin";
 
 const setAdminAuthority = (data) => {
     setAdminAutorities(data)

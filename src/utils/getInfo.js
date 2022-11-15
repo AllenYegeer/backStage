@@ -1,4 +1,4 @@
-import {getInfo} from '../request/admin'
+import { getInfo } from '@/request/admin'
 
 const get_info = (url,data,infos,total) => {
     getInfo(url,data).then((res) => {

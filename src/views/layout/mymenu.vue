@@ -1,5 +1,4 @@
 <template>
-  <div class="box">
     <el-menu
       class="el-menu-vertical-demo"
       :collapse="isCollapse"
@@ -49,7 +48,6 @@
         <template #title>公告管理</template>
       </el-menu-item>
     </el-menu>
-  </div>
 </template>
 <script lang="ts" setup>
 import { defineProps, watch, ref, computed } from "vue";
@@ -70,10 +68,9 @@ const handleClose = (key: string, keyPath: string[]) => {
 };
 </script>
 <style scoped>
-.box {
-}
+
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
-  min-height: 500px;
+  min-height: 800px;
 }
 </style>>

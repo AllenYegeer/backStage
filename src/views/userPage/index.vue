@@ -39,8 +39,8 @@
 <script setup>
 import { update } from 'lodash';
 import { onBeforeMount, reactive, ref } from 'vue'
-import pageination from '../../components/Pageination/index.vue'
-import { get_info } from '../../utils/getInfo';
+import pageination from '@/components/Pageination/index.vue'
+import { get_info } from '@/utils/getInfo';
 const now = new Date()
 let user_info = ref([])
 const total = ref(10)
